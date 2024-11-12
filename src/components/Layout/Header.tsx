@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Sun, Moon, Menu, X, Home, FilePlus } from 'lucide-react';
 import { useStore } from '../../store/useStore';
+import { Link } from 'react-router-dom';
 
 export const Header: React.FC = () => {
   const { themeMode, setThemeMode } = useStore();
@@ -27,11 +28,11 @@ export const Header: React.FC = () => {
         <div className="px-4 sm:px-6">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-8">
-              <a href="/" className="flex items-center space-x-2 group">
+              <Link to="/" className="flex items-center space-x-2 group">
                 < span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent group-hover:from-blue-700 group-hover:to-indigo-700">
                   QuickMail
                 </span>
-              </a>
+              </Link>
 
               
             </div>
@@ -39,9 +40,9 @@ export const Header: React.FC = () => {
             <div className="flex items-center space-x-2">
               <nav className="hidden md:flex items-center space-x-2">
                 {menuItems.map((item) => (
-                  <a
+                  <Link
                     key={item.label}
-                    href={item.href}
+                    to={item.href}
                     className={`
                       px-4 py-2 rounded-lg transition-all duration-300
                       ${themeMode === 'dark'
@@ -54,7 +55,7 @@ export const Header: React.FC = () => {
                       {item.icon}
                       <span>{item.label}</span>
                     </div>
-                  </a>
+                  </Link>
                 ))}
               </nav>
 
@@ -96,9 +97,9 @@ export const Header: React.FC = () => {
           <div className="md:hidden py-4 px-4 border-t border-gray-200 dark:border-gray-700">
             <nav className="flex flex-col space-y-2">
               {menuItems.map((item) => (
-                <a
+                <Link
                   key={item.label}
-                  href={item.href}
+                  to={item.href}
                   className={`
                     px-4 py-2 rounded-lg transition-all duration-300
                     ${themeMode === 'dark'
@@ -111,7 +112,7 @@ export const Header: React.FC = () => {
                     {item.icon}
                     <span>{item.label}</span>
                   </div>
-                </a>
+                </Link>
               ))}
             </nav>
           </div>
