@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sun, Moon, Menu, X } from 'lucide-react';
+import { Sun, Moon, Menu, X, Home, FilePlus } from 'lucide-react';
 import { useStore } from '../../store/useStore';
 
 export const Header: React.FC = () => {
@@ -10,14 +10,14 @@ export const Header: React.FC = () => {
 
 
   const menuItems = [
-    { label: 'Pricing', href: '/pricing' },
-    { label: 'Features', href: '/features' },
+    { label: 'home', href: '/', icon: <Home className="w-4 h-4" /> },
+    { label: 'Generate', href: '/generate', icon: <FilePlus className="w-4 h-4" /> },
   ];
 
   return (
-    <header className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-11/12 max-w-6xl">
+    <header className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-11/12 max-w-6xl`}>
       <div className={`
-        rounded-2xl backdrop-blur-lg shadow-lg border
+        rounded-2xl backdrop-blur-2xl shadow-lg border
         ${themeMode === 'dark' 
           ? 'bg-gray-900/80 border-gray-700/50 text-white' 
           : 'bg-white/80 border-gray-200/50 text-gray-800'
@@ -33,6 +33,10 @@ export const Header: React.FC = () => {
                 </span>
               </a>
 
+              
+            </div>
+
+            <div className="flex items-center space-x-2">
               <nav className="hidden md:flex items-center space-x-2">
                 {menuItems.map((item) => (
                   <a
@@ -46,13 +50,14 @@ export const Header: React.FC = () => {
                       }
                     `}
                   >
-                    {item.label}
+                    <div className="flex items-center space-x-2">
+                      {item.icon}
+                      <span>{item.label}</span>
+                    </div>
                   </a>
                 ))}
               </nav>
-            </div>
 
-            <div className="flex items-center space-x-2">
               <button
                 onClick={() => setThemeMode(themeMode === 'light' ? 'dark' : 'light')}
                 className={`
@@ -102,7 +107,10 @@ export const Header: React.FC = () => {
                     }
                   `}
                 >
-                  {item.label}
+                  <div className="flex items-center space-x-2">
+                    {item.icon}
+                    <span>{item.label}</span>
+                  </div>
                 </a>
               ))}
             </nav>

@@ -5,51 +5,41 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Bounce, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { MainPage } from "./pages/MainPage";
-import { AboutPage } from "./pages/AboutPage";
-import { PricingPage } from "./pages/PricingPage";
 import { FeaturesPage } from "./pages/FeaturesPage";
+import { MainPage } from "./pages/MainPage";
 import { useStore } from "./store/useStore";
-
+  
 const queryClient = new QueryClient();
 
 function App() {
   const { themeMode } = useStore();
 
-  useEffect(() => {
-    // Initialize Google AdMob
-    (window as any).admob = (window as any).admob || {};
-    (window as any).admob.initialize = (appId: string) => {
-      // Initialize AdMob with your app ID
-      console.log(`AdMob initialized with app ID: ${appId}`);
-    };
-    
-  }, []);
-
   return (
     <QueryClientProvider client={queryClient}>
       <DndProvider backend={HTML5Backend}>
-        <div className={themeMode}>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<MainPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/pricing" element={<PricingPage />} />
-              <Route path="/features" element={<FeaturesPage />} />
-            </Routes>
-          </BrowserRouter>
-          <ToastContainer
-            position="bottom-center"
-            autoClose={3000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            pauseOnHover
-            draggable
-            pauseOnFocusLoss
-            theme="light"
-            transition={Bounce}
-          />
+        <div className={`relative min-h-screen w-full ${themeMode}`}>
+          <div className="absolute inset-0 -z-10 h-full w-full bg-blue-500"></div>
+
+          <div className="relative h-full w-full bg-slate-950">
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<FeaturesPage />} />
+                <Route path="/generate" element={<MainPage />} />
+              </Routes>
+            </BrowserRouter>
+            <ToastContainer
+              position="bottom-center"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              pauseOnHover
+              draggable
+              pauseOnFocusLoss
+              theme="light"
+              transition={Bounce}
+            />
+          </div>
         </div>
       </DndProvider>
     </QueryClientProvider>

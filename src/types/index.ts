@@ -12,7 +12,7 @@ export type TemplateCategory = 'newsletter' | 'promotional' | 'event' | 'transac
 export type DeviceType = 'desktop' | 'tablet' | 'mobile';
 export type ThemeMode = 'light' | 'dark';
 
-export type ToneType = 'formal' | 'casual' | 'friendly';
+export type ToneType = 'formal' | 'casual' | 'friendly' | 'professional' | 'humorous' | 'empathetic';
 export type LengthType = 'brief' | 'medium' | 'detailed';
 export type IndustryType = 'technology' | 'retail' | 'healthcare' | 'education' | 'finance' | 'other';
 

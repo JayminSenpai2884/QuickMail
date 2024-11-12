@@ -47,7 +47,7 @@ export const MainPage: React.FC = () => {
           </div>
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-lg font-semibold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent">
+              <h2 className="text-lg font-semibold bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
                 Editor
               </h2>
             </div>
@@ -55,9 +55,9 @@ export const MainPage: React.FC = () => {
           </div>
         </div>
       </main>
-      {/* Conditionally render the ad container */}
+      {/* Conditionally render the ad container with updated styling */}
       {isAdVisible && (
-        <div ref={adContainerRef} className="fixed bottom-0 left-0 right-0 bg-white p-2 shadow">
+        <div ref={adContainerRef} className="fixed bottom-0 left-0 right-0 bg-gray-100 p-4 shadow-lg rounded-t-lg transition-transform transform translate-y-0">
           {/* Ad will be inserted here */}
         </div>
       )}

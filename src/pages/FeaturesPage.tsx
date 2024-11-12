@@ -1,19 +1,18 @@
 import React from 'react';
 import { Header } from '../components/Layout/Header';
-import { Mail, Sparkles, Shield, Zap } from 'lucide-react';
+import { Mail, Shield, Zap, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useStore } from '../store/useStore';
+import { useEffect } from 'react';
 
 export const FeaturesPage: React.FC = () => {
+  const { themeMode } = useStore();
+
   const features = [
     {
       icon: <Mail className="w-12 h-12 text-blue-500" />,
       title: 'AI-Powered Email Generation',
       description: 'Effortlessly create personalized, professional emails with cutting-edge AI.',
-    },
-    {
-      icon: <Sparkles className="w-12 h-12 text-purple-500" />,
-      title: 'Stunning Templates',
-      description: 'Choose from a diverse selection of sleek and customizable email templates.',
     },
     {
       icon: <Shield className="w-12 h-12 text-green-500" />,
@@ -27,36 +26,52 @@ export const FeaturesPage: React.FC = () => {
     },
   ];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = document.querySelectorAll('section');
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          section.classList.add('fade-in');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white">
+    <div className={`min-h-screen ${themeMode === 'light' ? 'bg-white text-gray-800' : 'bg-gray-900 text-white'}`}>
       <Header />
       <main className="max-w-7xl mx-auto px-6 py-16">
-        <section className="text-center mb-16 p-20">
-          <h1 className="text-5xl font-extrabold text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text">
+        <section className="text-center mb-5 p-20 animate-welcome mt-10 relative z-10">
+          <h1 className="text-6xl font-extrabold text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text">
             Welcome to QuickMail
           </h1>
-          <p className="text-lg text-gray-400 mt-4 mb-8">
+          <p className="text-lg text-gray-600 mt-4 mb-8">
             Revolutionizing email creation with AI-powered technology for faster, smarter communication.
           </p>
           <Link
             to="/generate"
-            className="inline-flex items-center px-8 py-4 text-lg rounded-full bg-blue-600 hover:bg-blue-700 text-white font-medium shadow-lg transition-all"
+            className="inline-flex items-center px-6 py-3 text-lg rounded-full border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-medium transition-all"
           >
+            <ArrowRight className="w-5 h-5 mr-2" />
             Get Started
           </Link>
         </section>
 
         <section className="mb-16 p-10">
           <h2 className="text-3xl font-bold text-center mb-12">Why Choose QuickMail?</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="flex flex-col items-center bg-gray-800 shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105"
+                className={`flex flex-col items-center shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 ${themeMode === 'light' ? 'bg-white text-gray-800 border border-gray-300' : 'bg-gray-800 text-white'}`}
               >
                 <div className="mb-6">{feature.icon}</div>
                 <h3 className="text-xl font-semibold mb-4 text-center">{feature.title}</h3>
-                <p className="text-center text-gray-400">{feature.description}</p>
+                <p className="text-center">{feature.description}</p>
               </div>
             ))}
           </div>
@@ -64,34 +79,19 @@ export const FeaturesPage: React.FC = () => {
 
         <section className="text-center mt-16">
           <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Emails?</h2>
-          <p className="text-lg text-gray-400 mb-8">
+          <p className="text-lg text-gray-600 mb-8">
             Join thousands of professionals using QuickMail to save time and enhance productivity.
           </p>
-          <Link
-            to="/generate"
-            className="inline-flex items-center px-8 py-4 text-lg rounded-full bg-blue-600 hover:bg-blue-700 text-white font-medium shadow-lg transition-all"
-          >
-            Start Your Free Trial
-          </Link>
         </section>
+
       </main>
 
-      <footer className="bg-gray-900 text-gray-400 py-8">
+      <footer className={`py-2 ${themeMode === 'light' ? 'bg-white text-gray-800' : 'bg-gray-900 text-white'}`}>
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <p className="mb-4">© 2023 QuickMail. All rights reserved.</p>
-          <div className="space-x-6">
-            <Link to="/about" className="hover:text-white">
-              About Us
-            </Link>
-            <Link to="/pricing" className="hover:text-white">
-              Pricing
-            </Link>
-            <Link to="/features" className="hover:text-white">
-              Features
-            </Link>
-          </div>
+          <p className="mb-4">© 2024 QuickMail by Jaymin P. All rights reserved.</p>
         </div>
       </footer>
+      
     </div>
   );
 };

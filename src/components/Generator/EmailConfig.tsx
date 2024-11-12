@@ -3,7 +3,7 @@ import { useStore } from '../../store/useStore';
 import { ToneType, LengthType } from '../../types';
 import { Settings, Wand2, Loader } from 'lucide-react';
 
-const tones: ToneType[] = ['formal', 'casual', 'friendly'];
+const tones: ToneType[] = ['formal', 'casual', 'friendly', 'professional', 'humorous', 'empathetic'];
 const lengths: LengthType[] = ['brief', 'medium', 'detailed'];
 
 export const EmailConfig: React.FC = () => {
@@ -77,7 +77,7 @@ export const EmailConfig: React.FC = () => {
             <select
               value={emailConfig.length}
               onChange={(e) => setEmailConfig({ length: e.target.value as LengthType })}
-              className="w-full px-3 py-2 rounded-md bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-blue-500 transition-all"
+              className="w-full px-3 py-2 rounded-md bg-white/50 dark:bg-gray-900/80 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-blue-500 transition-all"
             >
               {lengths.map((length) => (
                 <option key={length} value={length}>
@@ -92,7 +92,7 @@ export const EmailConfig: React.FC = () => {
             <select
               value={emailConfig.tone}
               onChange={(e) => setEmailConfig({ tone: e.target.value as ToneType })}
-              className="w-full px-3 py-2 rounded-md bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-blue-500 transition-all"
+              className="w-full px-3 py-2 rounded-md bg-white/50 dark:bg-gray-900/80 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-blue-500 transition-all"
             >
               {tones.map((tone) => (
                 <option key={tone} value={tone}>
