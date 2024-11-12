@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-
-const genAI = new GoogleGenerativeAI(import.meta.env.GENERATIVE_AI_KEY || '');
+// Access the environment variable using Vite's import.meta.env
+const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GENERATIVE_AI_KEY || '');
 
 export async function generateEmailContent(prompt: string): Promise<string> {
   try {

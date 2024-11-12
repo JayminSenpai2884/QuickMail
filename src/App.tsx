@@ -23,7 +23,7 @@ function App() {
       // Initialize AdMob with your app ID
       console.log(`AdMob initialized with app ID: ${appId}`);
     };
-    (window as any).admob.initialize("ca-app-pub-3227521894174552~4761100648"); // Your App ID
+    
   }, []);
 
   return (
