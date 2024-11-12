@@ -67,10 +67,10 @@ export const TiptapEditor: React.FC = () => {
         onDownload={handleDownload} 
         className="flex flex-wrap items-center space-x-2"
       />
-      <div className={`mx-auto transition-all duration-300 w-full max-w-full`}>
+      <div className={`mx-auto transition-all duration-300 w-full`}>
         <EditorContent 
           editor={editor} 
-          className="overflow-hidden whitespace-normal min-h-[300px] max-h-[500px]" 
+          className="overflow-hidden whitespace-normal" 
         />
       </div>
     </div>
