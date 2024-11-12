@@ -8,9 +8,10 @@ interface ToolbarProps {
   generatedEmailContent: string;
   onCopy: () => void;
   onDownload: () => void;
+  className?: string;
 }
 
-export const Toolbar: React.FC<ToolbarProps> = ({ editor, onCopy, onDownload }) => {
+export const Toolbar: React.FC<ToolbarProps> = ({ editor, onCopy, onDownload, className }) => {
   if (!editor) return null;
 
   const handleCopy = () => {
@@ -24,7 +25,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({ editor, onCopy, onDownload }) 
   };
 
   return (
-    <div className="border-b border-gray-200 dark:border-gray-700 p-2 flex items-center space-x-2 bg-white dark:bg-gray-800">
+    <div className={`toolbar ${className}`}>
       <button
         onClick={() => editor.chain().focus().toggleBold().run()}
         className={`p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 ${

@@ -59,15 +59,19 @@ export const TiptapEditor: React.FC = () => {
   };
 
   return (
-    <div className="glass-effect rounded-lg overflow-hidden preview-shadow animate-fade">
+    <div className="glass-effect rounded-lg overflow-hidden preview-shadow animate-fade p-4 md:p-6">
       <Toolbar 
         editor={editor} 
         generatedEmailContent={generatedEmailContent} 
         onCopy={handleCopy} 
         onDownload={handleDownload} 
+        className="flex flex-wrap items-center space-x-2"
       />
-      <div className={`mx-auto transition-all duration-300 w-full`}>
-        <EditorContent editor={editor} />
+      <div className={`mx-auto transition-all duration-300 w-full max-w-full`}>
+        <EditorContent 
+          editor={editor} 
+          className="overflow-hidden whitespace-normal min-h-[300px] max-h-[500px]" 
+        />
       </div>
     </div>
   );
