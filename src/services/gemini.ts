@@ -1,6 +1,7 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-const genAI = new GoogleGenerativeAI('AIzaSyBg1z38VdK6ETY89EXhZ-bmzdxqt1dC15Q');
+
+const genAI = new GoogleGenerativeAI(import.meta.env.GENERATIVE_AI_KEY || '');
 
 export async function generateEmailContent(prompt: string): Promise<string> {
   try {
