@@ -18,7 +18,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <DndProvider backend={HTML5Backend}>
         <div className={`relative min-h-screen w-full ${themeMode}`}>
-          <div className="absolute inset-0 -z-10 h-full w-full bg-blue-500"></div>
+          <div className="absolute inset-0 -z-10 h-full w-full bg-gradient-to-r from-blue-500 to-indigo-500"></div>
 
           <div className="relative h-full w-full bg-slate-950">
             <BrowserRouter>

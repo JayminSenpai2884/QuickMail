@@ -46,7 +46,7 @@ export const FeaturesPage: React.FC = () => {
       <Header />
       <main className="max-w-7xl mx-auto px-6 py-16">
         <section className="text-center mb-5 p-20 animate-welcome mt-10 relative z-10">
-          <h1 className="text-4xl sm:text-6xl font-extrabold text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text">
+          <h1 className="text-4xl sm:text-6xl font-extrabold text-transparent bg-gradient-to-r from-teal-400 to-blue-500 bg-clip-text">
             Welcome to QuickMail
           </h1>
           <p className="text-base sm:text-lg text-gray-600 mt-4 mb-8">
@@ -67,7 +67,7 @@ export const FeaturesPage: React.FC = () => {
             {features.map((feature, index) => (
               <div
                 key={index}
-                className={`flex flex-col items-center shadow-lg rounded-lg p-4 sm:p-6 transition-transform transform hover:scale-105 ${themeMode === 'light' ? 'bg-white text-gray-800 border border-gray-300' : 'bg-gray-800 text-white'}`}
+                className={`flex flex-col items-center shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105 ${themeMode === 'light' ? 'bg-white text-gray-800 border border-gray-300' : 'bg-gray-800 text-white'}`}
               >
                 <div className="mb-4">{feature.icon}</div>
                 <h3 className="text-xl font-semibold mb-3 text-center">{feature.title}</h3>
@@ -82,6 +82,13 @@ export const FeaturesPage: React.FC = () => {
           <p className="text-lg text-gray-600 mb-8">
             Join thousands of professionals using QuickMail to save time and enhance productivity.
           </p>
+          <Link
+            to="/generate"
+            className="inline-flex items-center px-6 py-3 text-lg rounded-full border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-medium transition-all"
+          >
+            <ArrowRight className="w-5 h-5 mr-2" />
+            Start Now
+          </Link>
         </section>
 
       </main>

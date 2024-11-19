@@ -15,12 +15,34 @@ export const Toolbar: React.FC<ToolbarProps> = ({ editor, onCopy, onDownload, cl
   if (!editor) return null;
 
   const handleCopy = () => {
-    onCopy();
-    toast.success('Email💌 copied to clipboard!');
+    const plainText = editor.getHTML()
+      .replace(/<br\s*\/?>/g, '\n')
+      .replace(/<\/p>/g, '\n')
+      .replace(/<[^>]*>/g, '')
+      .replace(/\n\s*\n+/g, '\n\n')
+      .trim();
+
+    navigator.clipboard.writeText(plainText).then(() => {
+      toast.success('Email💌 copied to clipboard!');
+    });
   };
 
   const handleDownload = () => {
-    onDownload();
+    const plainText = editor.getHTML()
+      .replace(/<br\s*\/?>/g, '\n')
+      .replace(/<\/p>/g, '\n')
+      .replace(/<[^>]*>/g, '')
+      .replace(/\n\s*\n+/g, '\n\n')
+      .trim();
+
+    const blob = new Blob([plainText], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'email.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
     toast.success('Email content downloaded⬇️!');
   };
 
